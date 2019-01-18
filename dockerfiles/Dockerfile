@@ -54,11 +54,9 @@ RUN mkdir -p \
     /var/run/supervisord \
 ;
 
-#COPY redis.config.php /usr/src/nextcloud/config/redis.config.php
-
 # Increase the values in the memory-limit.ini & www.conf configuration files
-COPY /usr/local/etc/php/conf.d/memory-limit.ini /usr/local/etc/php/conf.d/memory-limit.ini
-COPY /usr/local/etc/php-fpm.d/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY memory-limit.ini /usr/local/etc/php/conf.d/memory-limit.ini
+COPY www.conf /usr/local/etc/php-fpm.d/www.conf
 
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
