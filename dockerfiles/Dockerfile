@@ -1,10 +1,11 @@
-FROM nextcloud:15.0.5-fpm
+FROM nextcloud:16.0.1-fpm
 
 RUN set -ex; \
     \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         ffmpeg \
+        libmagickcore-6.q16-3-extra \
         smbclient \
         supervisor \
         libreoffice \
