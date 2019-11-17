@@ -1,4 +1,4 @@
-FROM nextcloud:17.0.0-fpm
+FROM nextcloud:17.0.1-fpm
 
 RUN set -ex; \
     \
@@ -20,16 +20,13 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends \
         libbz2-dev \
         libc-client-dev \
-        libgmp3-dev \
         libkrb5-dev \
         libsmbclient-dev \
     ; \
     \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
-    ln -s "/usr/include/$(dpkg-architecture --query DEB_BUILD_MULTIARCH)/gmp.h" /usr/include/gmp.h; \
     docker-php-ext-install \
         bz2 \
-        gmp \
         imap \
     ; \
     pecl install smbclient; \
@@ -50,7 +47,6 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p \
-    /usr/share/man/man1 \
     /var/log/supervisord \
     /var/run/supervisord \
 ;
