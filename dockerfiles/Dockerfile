@@ -1,4 +1,4 @@
-FROM nextcloud:17.0.1-fpm
+FROM nextcloud:18.0.0-fpm
 
 RUN set -ex; \
     \
@@ -6,7 +6,8 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends \
         ffmpeg \
         libmagickcore-6.q16-3-extra \
-        smbclient \
+#        procps \
+#        smbclient \
         supervisor \
         libreoffice \
     ; \
@@ -19,18 +20,18 @@ RUN set -ex; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         libbz2-dev \
-        libc-client-dev \
-        libkrb5-dev \
-        libsmbclient-dev \
+#        libc-client-dev \
+#        libkrb5-dev \
+#        libsmbclient-dev \
     ; \
     \
-    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
+#    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install \
         bz2 \
-        imap \
+#        imap \
     ; \
-    pecl install smbclient; \
-    docker-php-ext-enable smbclient; \
+#    pecl install smbclient; \
+#    docker-php-ext-enable smbclient; \
     \
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
     apt-mark auto '.*' > /dev/null; \
@@ -55,8 +56,8 @@ RUN mkdir -p \
 COPY memory-limit.ini /usr/local/etc/php/conf.d/memory-limit.ini
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
 
-COPY supervisord.conf /etc/supervisor/supervisord.conf
+COPY supervisord.conf /
 
 ENV NEXTCLOUD_UPDATE=1
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-c", "/supervisord.conf"]
