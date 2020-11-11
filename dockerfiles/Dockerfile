@@ -1,4 +1,4 @@
-FROM nextcloud:19.0.4-fpm
+FROM nextcloud:20.0.1-fpm
 
 RUN set -ex; \
     \
@@ -6,7 +6,7 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends \
         ffmpeg \
         libmagickcore-6.q16-6-extra \
-#        procps \
+        procps \
 #        smbclient \
         supervisor \
 #        libreoffice \
