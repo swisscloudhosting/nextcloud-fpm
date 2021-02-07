@@ -54,6 +54,7 @@ RUN mkdir -p \
 
 # Increase the values in the memory-limit.ini & www.conf configuration files
 COPY memory-limit.ini /usr/local/etc/php/conf.d/memory-limit.ini
+COPY opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
 
 COPY supervisord.conf /
