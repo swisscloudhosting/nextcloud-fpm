@@ -1,4 +1,4 @@
-FROM nextcloud:21.0.0-fpm
+FROM nextcloud:20.0.8-fpm
 
 RUN set -ex; \
     \
