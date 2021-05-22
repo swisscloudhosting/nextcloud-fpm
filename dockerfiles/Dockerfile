@@ -1,4 +1,4 @@
-FROM nextcloud:21.0.1-fpm
+FROM nextcloud:21.0.2-fpm
 
 RUN set -ex; \
     \
@@ -53,7 +53,6 @@ RUN mkdir -p \
 ;
 
 # Increase the values in the memory-limit.ini & www.conf configuration files
-COPY memory-limit.ini /usr/local/etc/php/conf.d/memory-limit.ini
 COPY opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
 
